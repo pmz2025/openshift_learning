@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-map-example-pod
+  namespace: nameOfTheProject
+spec:
+  containers:
+    - name: example-container
+      image: pathToTheImage
+      command: ["/bin/bash", "-c", "env"]
+      env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: configMapExample
+              key: database.name
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: configMapExample
+              key: database.user
+              optional: true
+
