@@ -64,6 +64,10 @@ simply use the following command
 
 `oc set volume  deployment/webconfig --add --overwrite --name webconfig-vol`
 
+or there is another way
+
+oc set data deployment/webconfig --from-file secret/<nameOfTheSecret> --from-file id_rsa=/etc/fstab
+
 In case you wish to delete the volume
 
 `oc set volume deployment/webconfig --remove --name webconfig-vol`
