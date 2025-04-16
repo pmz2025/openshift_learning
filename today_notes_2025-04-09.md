@@ -11,6 +11,12 @@ To detect temporary issues that might affect your applications.
 It is similar to the liveness probe, it can be an HTTP request, TCP check, or an exec command, but it checks the application’s readiness to serve requests.
 Example Use Case: When a web server or database needs to initialize connections, or pre-load data before serving requests.
 
+The application takes 7 seconds to initialize. The application exposes the /health API endpoint on HTTP port 3000. 
+Configure the longload deployment to use this endpoint, to ensure that the application is ready before serving client requests.
+
+oc set probe deploy/<nameOfTheDeployment> --readiness --get-url=http://:3000/health --initial-delay-seconds=7
+
+
 ## Liveness Probes - restarts pod -Checks if the container is still running.
 
 If an application fails its liveness probe **enough times**, then the cluster restarts the pod according to its restart policy.
