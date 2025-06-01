@@ -21,6 +21,4 @@ eap-xp3-basic-s2i            Example of an application based on JBoss EAP XP. Fo
 
 ## Lets find dns information
 
-
 ![DNS Information](images/dns_info.png)
-+

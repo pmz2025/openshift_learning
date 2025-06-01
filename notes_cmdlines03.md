@@ -17,6 +17,12 @@ What is included?
 }
 ```
 
+### Things under metadata i can find
+
+- annotations
+- name
+- namespace
+
 ![Find all labels for a given pod](images/findalllabels.png)
 
 ## Deploy the app using image
@@ -65,7 +71,8 @@ mysql-80   ClusterIP   10.217.4.93   <none>        3306/TCP   88m
 ### oc deployment
 
 You can update env paramenters of the deployment on the fly.
-scenario: You deployed mysql without providing any parameters, in this case pods will fail
+
+**scenario**: You deployed mysql without providing any parameters, in this case pods will fail
 and if you look at the oc logs pod/<podName>, you will get message as seen below
 
 ```shell
@@ -83,7 +90,7 @@ Or both.
 ```
 
 ```shell
-# just the environment variable
+# just set the environment variable
 oc set env deployment mydb99 \
                          MYSQL_USER=transient \
                          MYSQL_PASSWORD=transientpass \
@@ -105,6 +112,9 @@ pod "mydbclient" deleted
 
 ```
 
+Always remember mysql client is not separately available, you need to install database for it.
+In the above case, i will created a run time container
+
 ## oc create job
 
 ```shell
@@ -124,5 +134,16 @@ date-job-dq264   0/1     Completed   0          3m40s
 ➤ oc delete pods -l job-name=date-job
 pod "date-job-dq264" deleted
 ➤ 
+
+```
+
+## oc create cronjob
+
+```shell
+oc create cronjob mytime --image registry.redhat.io/ubi9/ubi --schedule "*/1 * * * *" -- date
+
+# what the above command means, it will create container every one and print date.
+# you should watch the container state change and use 
+oc logs mytime-29130500-fknxp
 
 ```
