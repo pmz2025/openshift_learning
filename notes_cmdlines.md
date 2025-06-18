@@ -58,7 +58,19 @@ oc get cluster version
 
 ## Get cluster version
 
+```bash
 oc get clusterversion
+
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.18.2    True        False         18d     Cluster version is 4.18.2
+
+# get the cluster id which is also required while gathering the logs
+
+oc get clusterversion -o json | jq .items[].spec.clusterID
+"15059d96-2291-4f1e-8279-910c55cc227e"
+
+```
+
 
 ### custom resource definition e.g. crds
 
