@@ -1,3 +1,4 @@
 *.sha256
 kubectl
 temp.*
+cluster-info_dump/
