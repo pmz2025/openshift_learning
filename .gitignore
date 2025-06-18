@@ -2,3 +2,5 @@
 kubectl
 temp.*
 cluster-info_dump/
+must-gather-inspect/
+creds/
