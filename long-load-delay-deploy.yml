@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: long-load-delay-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: long-load-delay
+  template:
+    metadata:
+      labels:
+        app: long-load-delay
+    spec:
+      containers:
+        - image: quay.io/redhattraining/long-load:v1
+          name: long-load-delay
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: START_DELAY
+              value: "60000"
+      restartPolicy: Always

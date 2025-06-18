@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: long-load2
+spec:
+  containers:
+    - image: quay.io/redhattraining/long-load:v1
+      name: long-load
+      securityContext:
+        allowPrivilegeEscalation: false
+  restartPolicy: Always # with Never, Pod will never start
+
+# Notes
+
+# oc exec -it long-load2 -- curl localhost:3000/health will return okay
+# oc exec -it long-load2 -- curl localhost:3000/destruct will restart the pod,
+  # if the restart policy is Always (default)
