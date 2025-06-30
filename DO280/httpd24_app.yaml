@@ -41,3 +41,14 @@ spec:
     targetPort: 8080
   selector:
     app: httpd24
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: httpd24-route
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: httpd24-service
