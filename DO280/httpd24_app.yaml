@@ -47,6 +47,7 @@ kind: Route
 metadata:
   name: httpd24-route
 spec:
+  host: myhttpd.apps-crc.testing
   port:
     targetPort: 8080
   to:
