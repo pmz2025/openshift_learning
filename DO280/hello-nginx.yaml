@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"hello-openshift","creationTimestamp":null,"labels":{"app":"hello-openshift"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"hello-openshift"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"hello-openshift"}},"spec":{"containers":[{"name":"docker-nginx","image":"docker.io/behance/docker-nginx:latest","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: hello-openshift
+  name: hello-openshift
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-openshift
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-openshift
+    spec:
+      containers:
+      - image: docker.io/behance/docker-nginx:latest
+        name: docker-nginx
+        resources: {}
+status: {}
+---
+apiVersion: v1
+metadata:
+  name: hello-openshift-service
+kind: Service
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: hello-openshift
