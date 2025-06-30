@@ -1,6 +1,6 @@
 apiVersion: v1
 metadata:
-  name: httpd24-service
+  name: httpd24-svc
 kind: Service
 spec:
   ports:
@@ -8,4 +8,4 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: httpd24
+    app: httpd24-app
