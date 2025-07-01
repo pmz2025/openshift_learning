@@ -1,0 +1,22 @@
+kind: Kustomization
+namespace: test-apps
+patches:
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: frontend-test
+    options:
+      allowNameChange: true
+    target:
+      kind: Deployment
+      name: httpd24-app
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3
+    target:
+      kind: Deployment
+      name: httpd24-app
+
+resources:
+  - ../../base

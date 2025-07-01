@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: httpd24-rt
+spec:
+  host: myhttpd.apps-crc.testing
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: httpd24-svc

@@ -1,0 +1,5 @@
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - httpd24_route.yaml
+  - httpd24_svc.yaml
