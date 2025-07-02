@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mysqlapp","creationTimestamp":null,"labels":{"app":"mysqlapp"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mysqlapp"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mysqlapp"}},"spec":{"containers":[{"name":"mysql-80","image":"registry.redhat.io/rhel9/mysql-80","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mysqlapp
+  name: mysqlapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqlapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mysqlapp
+    spec:
+      containers:
+      - env:
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                key: DB_USER
+                name: mysqlsecret
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: DB_PASSWORD
+                name: mysqlsecret
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                key: DB_DATABASE
+                name: mysqlsecret
+        name: mysql-80
+        image: registry.redhat.io/rhel9/mysql-80
+        resources: {}
+status: {}

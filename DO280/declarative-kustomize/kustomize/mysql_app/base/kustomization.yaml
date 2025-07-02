@@ -1,0 +1,9 @@
+kind: Kustomization
+resources:
+  - deployment.yaml
+secretGenerator:
+  - name: mysqlsecret
+    literals:
+      - DB_USER="dbadmin"
+      - DB_PASSWORD="passit"
+      - DB_DATABASE="itemsx"

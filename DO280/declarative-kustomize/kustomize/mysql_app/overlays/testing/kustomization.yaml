@@ -1,0 +1,11 @@
+kind: Kustomization
+namespace: test-apps
+resources:
+  - ../../base
+secretGenerator:
+  - name: mysqlsecret
+    behavior: merge
+    literals:
+      - DB_USER="testdbadmin"
+      - DB_PASSWORD="testpassit"
+      - DB_DATABASE="testitemsx"
