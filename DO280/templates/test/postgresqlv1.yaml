@@ -27,7 +27,7 @@ items:
             value: catalog
           - name: PGPORT
             value: "5432"
-          image: registry.redhat.io/rhel9/postgresql-15:9.6-1749689804
+          image: registry.redhat.io/rhel9/postgresql-15:latest
           imagePullPolicy: Always
           livenessProbe:
             exec:
